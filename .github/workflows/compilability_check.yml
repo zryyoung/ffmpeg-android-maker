@@ -19,3 +19,17 @@ jobs:
           export ANDROID_SDK_HOME=$ANDROID_HOME
           export ANDROID_NDK_HOME=$ANDROID_NDK_LATEST_HOME
           ./ffmpeg-android-maker.sh -all-free -all-gpl -android=24 -abis=${{ matrix.abi }}
+      
+      - name: Upload arm64-v8a libraries as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ffmpeg-8.0.1-android
+          path: |
+            output/
+            
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-arm64
+          path: |
+            build/
